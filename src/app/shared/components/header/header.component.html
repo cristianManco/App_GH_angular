@@ -1,6 +1,26 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="onToggleSidenav()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>{{ 'APP_TITLE' | translate }}</span>
-</mat-toolbar>
+<header class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <img src="/BPO LOGO.png" class="img-fluid" alt="Logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/dashboard'" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/perfil-cargo'" routerLinkActive="active">Perfil de Cargos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/perfil-campana'" routerLinkActive="active">Perfil de Campañas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/requisiciones'" routerLinkActive="active">Requisiciones</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

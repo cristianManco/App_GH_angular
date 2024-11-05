@@ -1,0 +1,12 @@
+.table th {
+  cursor: pointer;
+}
+
+.table th:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .page-item.disabled .page-link {
+  pointer-events: none;
+  opacity: 0.6;
+}

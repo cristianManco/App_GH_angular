@@ -1,6 +1,6 @@
-<mat-nav-list>
-  <a mat-list-item *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="active">
-    <mat-icon matListIcon>{{item.icon}}</mat-icon>
-    <span matListItemTitle>{{ item.label | translate }}</span>
+<nav class="nav-list">
+  <a *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="active" class="nav-list-item">
+    <span class="nav-list-icon">{{item.icon}}</span>
+    <span class="nav-list-title">{{ item.label }}</span>
   </a>
-</mat-nav-list>
+</nav>

@@ -66,27 +66,40 @@ src/
 
 Look at my files and project structure as it came configured with angular 18 the base project and the rest are the files that you have helped me to create based on this structure of folders and files there are solutions the errors and continue with the application for all other views
 
+estructura bse de angular 18 +
 
 PUBLIC/
 SRC/
-   APP/
-   ENVIROMENTS
-   INDEX.HTML
-   MAIN.SERVER.TS
-   MAIN.TS
-   STYLES.CSS
-   .EDITORCONFIG
-   .GITIGNORE
-   ANGULAR.JSON
-   PACKAGE.JSON
-   README.md
-   SERVER.TS
+    APP/
+        app.component.html
+        app.component.CSS
+        app.component.spec.ts
+        app.component.ts
+        APP.CONFIG.SERVER.TS
+        APP.CONFIG.TS
+        APP.ROUTES.TS
 
+    INDEX.HTML
+    MAIN.SERVER.TS
+    MAIN.TS
+    STYLES.CSS
+
+.EDITORCONFIG
+.GITIGNORE
+ANGULAR.JSON
+PACKAGE-LOCK.JSON
+PACKAGE.JSON
+README.md
+SERVER.TS
+TSCONFIG.JSON
+
+
+estructura del proyecto ene le que estoy trabjando
 
 SRC/APP/
        AUTH/
-       CORE/
-       DASHCOARD/
+       services/
+       DASHBOARD/
        PERFIL-CAMPAÑA/
        PERFIL-CARGO/
        SHARED/
@@ -96,5 +109,7 @@ SRC/APP/
        APP.COMPONENT.TS
        APP.CONFIG.SERVER.TS
        APP.CONFIG.TS
-       APP.MODULE.TS
        APP.ROUTES.TS
+
+
+
