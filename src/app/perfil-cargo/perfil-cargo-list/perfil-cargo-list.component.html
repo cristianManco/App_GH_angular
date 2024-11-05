@@ -1,0 +1,57 @@
+<div class="perfil-cargo-list-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'PERFIL_CARGO.LIST_TITLE' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>{{ 'COMMON.FILTER' | translate }}</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'COMMON.FILTER_PLACEHOLDER' | translate }}">
+        </mat-form-field>
+  
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell  *matCellDef="let row"> {{row.ID}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="IdCargo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PERFIL_CARGO.ID_CARGO' | translate }} </th>
+            <td mat-cell *matCellDef="let row"> {{row.IdCargo}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'COMMON.STATUS' | translate }} </th>
+            <td mat-cell *matCellDef="let row"> {{row.Estado}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Nivel_Academico">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PERFIL_CARGO.NIVEL_ACADEMICO' | translate }} </th>
+            <td mat-cell *matCellDef="let row"> {{row.Nivel_Academico}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="Meses_de_experiencia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PERFIL_CARGO.MESES_EXPERIENCIA' | translate }} </th>
+            <td mat-cell *matCellDef="let row"> {{row.Meses_de_experiencia}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{ 'COMMON.ACTIONS' | translate }} </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button color="primary" [routerLink]="['/perfil-cargo', 'edit', row.ID]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="onDelete(row.ID)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>

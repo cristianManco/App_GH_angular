@@ -1,27 +1,100 @@
-# AppGestionHumana
+```css
+src/
+├── app/
+│   ├── auth/
+│   │   ├── login/
+│   │   │   ├── login.component.ts
+│   │   │   ├── login.component.html
+│   │   │   └── login.component.scss
+│   │   ├── auth.service.ts
+│   │   ├── auth.guard.ts
+│   │   └── auth.interceptor.ts
+│   ├── perfil-cargo/
+│   │   ├── perfil-cargo-list/
+│   │   │   ├── perfil-cargo-list.component.ts
+│   │   │   ├── perfil-cargo-list.component.html
+│   │   │   └── perfil-cargo-list.component.scss
+│   │   ├── perfil-cargo-form/
+│   │   │   ├── perfil-cargo-form.component.ts
+│   │   │   ├── perfil-cargo-form.component.html
+│   │   │   └── perfil-cargo-form.component.scss
+│   │   ├── perfil-cargo.service.ts
+│   │   └── perfil-cargo.model.ts
+│   ├── perfil-campana/
+│   │   ├── perfil-campana-list/
+│   │   │   ├── perfil-campana-list.component.ts
+│   │   │   ├── perfil-campana-list.component.html
+│   │   │   └── perfil-campana-list.component.scss
+│   │   ├── perfil-campana-form/
+│   │   │   ├── perfil-campana-form.component.ts
+│   │   │   ├── perfil-campana-form.component.html
+│   │   │   └── perfil-campana-form.component.scss
+│   │   ├── perfil-campana.service.ts
+│   │   └── perfil-campana.model.ts
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── header/
+│   │   │   │   ├── header.component.ts
+│   │   │   │   ├── header.component.html
+│   │   │   │   └── header.component.scss
+│   │   │   ├── sidebar/
+│   │   │   │   ├── sidebar.component.ts
+│   │   │   │   ├── sidebar.component.html
+│   │   │   │   └── sidebar.component.scss
+│   │   │   └── confirm-dialog/
+│   │   │       ├── confirm-dialog.component.ts
+│   │   │       ├── confirm-dialog.component.html
+│   │   │       └── confirm-dialog.component.scss
+│   │   └── services/
+│   │       └── api.service.ts
+│   ├── app-routing.module.ts
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   └── app.module.ts
+├── assets/
+│   └── images/
+├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
+├── styles.scss
+└── main.ts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```
 
-## Code scaffolding
+Look at my files and project structure as it came configured with angular 18 the base project and the rest are the files that you have helped me to create based on this structure of folders and files there are solutions the errors and continue with the application for all other views
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+PUBLIC/
+SRC/
+   APP/
+   ENVIROMENTS
+   INDEX.HTML
+   MAIN.SERVER.TS
+   MAIN.TS
+   STYLES.CSS
+   .EDITORCONFIG
+   .GITIGNORE
+   ANGULAR.JSON
+   PACKAGE.JSON
+   README.md
+   SERVER.TS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+SRC/APP/
+       AUTH/
+       CORE/
+       DASHCOARD/
+       PERFIL-CAMPAÑA/
+       PERFIL-CARGO/
+       SHARED/
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+       APP.COMPONENT.CSS
+       APP.COMPONENT.HTML
+       APP.COMPONENT.TS
+       APP.CONFIG.SERVER.TS
+       APP.CONFIG.TS
+       APP.MODULE.TS
+       APP.ROUTES.TS

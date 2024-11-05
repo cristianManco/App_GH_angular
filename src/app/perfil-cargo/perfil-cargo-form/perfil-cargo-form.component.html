@@ -1,0 +1,19 @@
+<form [formGroup]="perfilCargoForm" (ngSubmit)="onSubmit()">
+    <!-- Other form fields -->
+    
+    <mat-form-field>
+      <mat-label>Aprobación</mat-label>
+      <input matInput formControlName="Aprobacion" type="number">
+      <mat-error *ngIf="perfilCargoForm.get('Aprobacion')?.hasError('required')">
+        Aprobación es requerida
+      </mat-error>
+      <mat-error *ngIf="perfilCargoForm.get('Aprobacion')?.hasError('pattern')">
+        Aprobación debe ser un número válido
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Submit button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="perfilCargoForm.invalid">
+      Guardar
+    </button>
+  </form>
