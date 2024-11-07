@@ -1,53 +1,110 @@
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-header">
-      <h2>Lista de Perfiles de Cargo</h2>
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-12 text-right">
+      <button class="btn btn-primary" (click)="openDialog()">Añadir Nuevo Cargo</button>
     </div>
-    <div class="card-body">
-      <div class="form-group mb-3">
-        <label for="filter">Filtrar</label>
-        <input id="filter" class="form-control" type="text" (keyup)="applyFilter($event)" placeholder="Buscar...">
-      </div>
-
-      <table class="table table-bordered">
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th (click)="sortData('ID')">ID</th>
-            <th (click)="sortData('IdCargo')">ID Cargo</th>
-            <th (click)="sortData('Estado')">Estado</th>
-            <th (click)="sortData('Nivel_Academico')">Nivel Académico</th>
-            <th (click)="sortData('Meses_de_experiencia')">Meses de Experiencia</th>
+            <th>ID</th>
+            <th>Id Cargo</th>
+            <th>Id Nivel</th>
+            <th>Estado</th>
+            <th>Objetivo del Cargo</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of perfilesCargo$ | async">
-            <td>{{ row.ID }}</td>
-            <td>{{ row.IdCargo }}</td>
-            <td>{{ row.Estado }}</td>
-            <td>{{ row.Nivel_Academico }}</td>
-            <td>{{ row.Meses_de_experiencia }}</td>
+          <tr *ngFor="let cargo of cargos">
+            <td>{{ cargo.ID }}</td>
+            <td>{{ cargo.IdCargo }}</td>
+            <td>{{ cargo.IdNivel }}</td>
+            <td>{{ cargo.Estado }}</td>
+            <td>{{ cargo.Objetivo_del_Cargo }}</td>
             <td>
-              <button class="btn btn-primary me-2" (click)="onEdit(row.ID)">Editar</button>
-              <button class="btn btn-danger" (click)="onDelete(row.ID)">Eliminar</button>
+              <button class="btn btn-warning btn-sm mr-2" (click)="openDialog(cargo)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteCargo(cargo.ID)">Eliminar</button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
 
-      <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-          <li class="page-item" [class.disabled]="currentPage === 1">
-            <button class="page-link" (click)="previousPage()">Anterior</button>
-          </li>
-          <li class="page-item disabled">
-            <span class="page-link">Página {{ currentPage }} de {{ totalPages }}</span>
-          </li>
-          <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <button class="page-link" (click)="nextPage()">Siguiente</button>
-          </li>
-        </ul>
-      </nav>
+  <!-- Dialog Modal -->
+  <div class="modal" tabindex="-1" [class.show]="isDialogOpen" [style.display]="isDialogOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ selectedCargo ? 'Editar Cargo' : 'Nuevo Cargo' }}</h5>
+          <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="cargoForm" (ngSubmit)="saveCargo()">
+            <div class="form-group">
+              <label for="IdCargo">Id Cargo</label>
+              <input type="number" id="IdCargo" formControlName="IdCargo" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="IdNivel">Id Nivel</label>
+              <input type="number" id="IdNivel" formControlName="IdNivel" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="IdCargo_Reporta">Id Cargo Reporta</label>
+              <input type="number" id="IdCargo_Reporta" formControlName="IdCargo_Reporta" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="Estado">Estado</label>
+              <input type="text" id="Estado" formControlName="Estado" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="Objetivo_del_Cargo">Objetivo del Cargo</label>
+              <textarea id="Objetivo_del_Cargo" formControlName="Objetivo_del_Cargo" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="Nivel_Academico_Min">Nivel Academico Min</label>
+              <input type="text" id="Nivel_Academico_Min" formControlName="Nivel_Academico_Min" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="Nivel_Academico">Nivel Academico</label>
+              <input type="text" id="Nivel_Academico" formControlName="Nivel_Academico" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="Area_de_Conocimiento">Area de Conocimiento</label>
+              <textarea id="Area_de_Conocimiento" formControlName="Area_de_Conocimiento" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="Meses_de_experiencia">Meses de experiencia</label>
+              <input type="number" id="Meses_de_experiencia" formControlName="Meses_de_experiencia" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="Competencias_tecnicas">Competencias tecnicas</label>
+              <textarea id="Competencias_tecnicas" formControlName="Competencias_tecnicas" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="Funciones_del_cargo">Funciones del cargo</label>
+              <textarea id="Funciones_del_cargo" formControlName="Funciones_del_cargo" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="Indicadores">Indicadores</label>
+              <textarea id="Indicadores" formControlName="Indicadores" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="Aprobacion">Aprobacion</label>
+              <input type="number" id="Aprobacion" formControlName="Aprobacion" class="form-control">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancelar</button>
+              <button type="submit" class="btn btn-primary">{{ selectedCargo ? 'Guardar Cambios' : 'Crear Cargo' }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

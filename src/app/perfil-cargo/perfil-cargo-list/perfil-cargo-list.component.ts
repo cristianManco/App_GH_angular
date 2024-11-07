@@ -1,94 +1,102 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PerfilCargo } from '../perfil-cargo.model';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CargoService } from '../perfil-cargo.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { PerfilCargoService } from '../perfil-cargo.service';
-import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-perfil-cargo-list',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  selector: 'app-cargo',
+  standalone:true,
+  imports: [CommonModule, ReactiveFormsModule, ],  
   templateUrl: './perfil-cargo-list.component.html',
-  styleUrls: ['./perfil-cargo-list.component.scss']
+  styleUrls: ['./perfil-cargo-list.component.css']
 })
 export class PerfilCargoListComponent implements OnInit {
-  perfilesCargo$: Observable<PerfilCargo[]>;
-  filteredPerfilesCargo: PerfilCargo[] = [];
-  displayedColumns: string[] = ['ID', 'IdCargo', 'Estado', 'Nivel_Academico', 'Meses_de_experiencia', 'actions'];
-  currentPage = 1;
-  pageSize = 10;
-  totalPages = 0;
+  cargos: any[] = [];
+  selectedCargo: any = null;
+  cargoForm: FormGroup;
+  isDialogOpen = false;
 
-  constructor(private perfilCargoService: PerfilCargoService) {
-    this.perfilesCargo$ = this.perfilCargoService.getAll();
-  }
-
-  ngOnInit() {
-    this.perfilesCargo$.subscribe(perfiles => {
-      this.filteredPerfilesCargo = perfiles;
-      this.totalPages = Math.ceil(this.filteredPerfilesCargo.length / this.pageSize);
-      this.updatePaginator();
+  constructor(private cargoService: CargoService, private fb: FormBuilder) {
+    this.cargoForm = this.fb.group({
+      ID: [''],
+      IdCargo: [''],
+      IdNivel: [''],
+      IdCargo_Reporta: [''],
+      Estado: [''],
+      Objetivo_del_Cargo: [''],
+      Nivel_Academico_Min: [''],
+      Nivel_Academico: [''],
+      Area_de_Conocimiento: [''],
+      Meses_de_experiencia: [''],
+      Competencias_tecnicas: [''],
+      Funciones_del_cargo: [''],
+      Indicadores: [''],
+      Aprobacion: ['']
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    this.perfilesCargo$ = this.perfilCargoService.getAll().pipe(
-      map(perfiles => perfiles.filter(item => 
-        item.IdCargo.toString().toLowerCase().includes(filterValue) || 
-        item.Estado.toLowerCase().includes(filterValue) || 
-        item.Nivel_Academico.toLowerCase().includes(filterValue) || 
-        item.Meses_de_experiencia.toString().toLowerCase().includes(filterValue)
-      ))
-    );
-    this.perfilesCargo$.subscribe(perfiles => {
-      this.filteredPerfilesCargo = perfiles;
-      this.totalPages = Math.ceil(this.filteredPerfilesCargo.length / this.pageSize);
-      this.updatePaginator();
-    });
+  ngOnInit(): void {
+    this.loadCargos();
   }
 
-  sortData(sortField: string) {
-    this.filteredPerfilesCargo.sort((a, b) => {
-      const fieldA = a[sortField as keyof PerfilCargo];
-      const fieldB = b[sortField as keyof PerfilCargo];
-      if (fieldA < fieldB) {
-        return -1;
-      } else if (fieldA > fieldB) {
-        return 1;
-      } else {
-        return 0;
+  loadCargos() {
+    this.cargoService.getCargos().subscribe(
+      (data: any[]) => {
+        this.cargos = data;
+      },
+      (error: any) => {
+        console.error('Error al cargar los cargos', error);
       }
-    });
+    );
   }
 
-  onEdit(id: number) {
-    // Lógica para editar
+  openDialog(cargo: any = null) {
+    this.selectedCargo = cargo;
+    this.cargoForm.reset();
+    if (cargo) {
+      this.cargoForm.patchValue(cargo);
+    }
+    this.isDialogOpen = true;
   }
 
-  onDelete(id: number) {
-    this.perfilCargoService.delete(id).subscribe(() => {
-      this.ngOnInit();
-    });
+  closeDialog() {
+    this.isDialogOpen = false;
   }
 
-  updatePaginator() {
-    this.filteredPerfilesCargo = this.filteredPerfilesCargo.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePaginator();
+  saveCargo() {
+    if (this.selectedCargo) {
+      // Actualizar cargo
+      this.cargoService.updateCargo(this.selectedCargo.ID, this.cargoForm.value).subscribe(
+        () => {
+          this.loadCargos();
+          this.closeDialog();
+        },
+        (error: any) => {
+          console.error('Error al actualizar el cargo', error);
+        }
+      );
+    } else {
+      // Crear nuevo cargo
+      this.cargoService.createCargo(this.cargoForm.value).subscribe(
+        () => {
+          this.loadCargos();
+          this.closeDialog();
+        },
+        (error: any) => {
+          console.error('Error al crear el cargo', error);
+        }
+      );
     }
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePaginator();
-    }
+  deleteCargo(id: number) {
+    this.cargoService.deleteCargo(id).subscribe(
+      () => {
+        this.loadCargos();
+      },
+      (error: any) => {
+        console.error('Error al eliminar el cargo', error);
+      }
+    );
   }
 }

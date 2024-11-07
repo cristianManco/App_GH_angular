@@ -1,12 +1,16 @@
-.table th {
-  cursor: pointer;
+.modal {
+  display: none;
 }
 
-.table th:hover {
-  background-color: #f0f0f0;
+.modal.show {
+  display: block;
 }
 
-.pagination .page-item.disabled .page-link {
-  pointer-events: none;
-  opacity: 0.6;
+.modal-backdrop {
+  display: none;
+}
+
+table th,
+table td {
+  vertical-align: middle !important;
 }

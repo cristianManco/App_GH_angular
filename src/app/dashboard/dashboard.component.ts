@@ -1,48 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PerfilCargoListComponent } from '../perfil-cargo/perfil-cargo-list/perfil-cargo-list.component';
+import { PerfilCampanaListComponent } from '../perfil-campaña/perfil-campaña-list/perfil-campana-list.component';
 
 @Component({
   selector: 'app-dashboard',
+  standalone:true,
+  imports: [CommonModule, ReactiveFormsModule, PerfilCargoListComponent, PerfilCampanaListComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  barChart: any;
+  currentSection: string = 'perfilCampana';
 
-  ngOnInit() {
-    this.initializeChart();
-  }
+  ngOnInit() {}
 
-  initializeChart() {
-    this.barChart = new Chart('barChart', {
-      type: 'bar',
-      data: {
-        labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [10, 20, 30, 40, 50],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-          },
-          {
-            label: 'Dataset 2',
-            data: [15, 25, 35, 45, 55],
-            backgroundColor: 'rgba(153, 102, 255, 0.2)',
-            borderColor: 'rgba(153, 102, 255, 1)',
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+  showSection(section: string) {
+    this.currentSection = section;
   }
 }

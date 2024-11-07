@@ -1,3 +1,131 @@
+# 🚀 Proyecto de Gestión Humana - Frontend
+
+![Angular](https://img.shields.io/badge/Angular-18.0-red.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-18.1.0-green.svg)
+![SCSS](https://img.shields.io/badge/SCSS-3-ff69b4.svg)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg)
+
+## 📋 Descripción
+
+Este proyecto es el frontend del sistema de gestión humana, desarrollado con Angular 18+ y TypeScript. Permite a los usuarios gestionar perfiles de cargos y campañas dentro de una organización a través de una interfaz web moderna y responsiva.
+
+## 📦 Tecnologías
+
+- **Angular**: Un framework de desarrollo web para construir aplicaciones cliente.
+- **TypeScript**: Un superconjunto de JavaScript que añade tipado estático.
+- **Node.js**: Entorno de ejecución para JavaScript.
+- **SCSS**: Lenguaje de hojas de estilo en cascada con características avanzadas.
+- **JavaScript**: Lenguaje de programación interpretado.
+
+## ⚙️ Instalación
+
+Sigue estos pasos para instalar y configurar el proyecto en tu máquina local.
+
+### Prerrequisitos
+
+- Node.js (versión 18.1.0 o superior)
+- npm (versión 10.0.8 o superior)
+
+### Pasos
+
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/cristianManco/App_GH_angular.git
+   cd App_GH_angular
+   ```
+
+2. **Instala las dependencias**
+   ```bash
+   npm install
+   ```
+
+3. **Configura las variables de entorno**
+
+   Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
+   ```env
+   API_URL=http://localhost:3002/api
+   ```
+
+4. **Ejecuta la aplicación en modo desarrollo**
+   ```bash
+   npm run start
+   ```
+
+   La aplicación estará disponible en `http://localhost:4200`.
+
+## 🚀 Uso
+
+### Páginas Disponibles
+
+#### Home
+
+- `GET /`: Página principal con información general del sistema de gestión humana.
+
+#### Perfil de Cargo
+
+- `GET /perfil-cargo`: Página que muestra todos los perfiles de cargo.
+
+
+#### Perfil de Campaña
+
+- `GET /perfil-campaña`: Página que muestra todos los perfiles de campaña.
+
+
+## 🛠️ Desarrollo
+
+### Scripts Disponibles
+
+- `npm run start`: Inicia la aplicación en modo desarrollo.
+- `npm run build`: Compila la aplicación para producción.
+- `npm run lint`: Ejecuta linter para el código.
+
+### Estructura del Proyecto
+
+```bash
+proyecto-gestion-humana-frontend-angular/
+│
+├── src/
+│   ├── app/
+│   │   ├── auth/                      # Módulo de autenticación
+│   │   ├── services/                  # Servicios
+│   │   ├── dashboard/                 # Dashboard
+│   │   ├── perfil-campaña/            # Módulo de perfil de campaña
+│   │   ├── perfil-cargo/              # Módulo de perfil de cargo
+│   │   ├── shared/                    # Componentes compartidos
+│   │   ├── app.component.ts           # Componente principal
+│   │   ├── app.component.html         # Plantilla principal
+│   │   ├── app.component.css         # Estilos principales
+│   │   ├── app.config.ts              # Configuración de la aplicación
+│   │   ├── app.routes.ts              # Rutas de la aplicación
+│   ├── assets/                        # Archivos estáticos
+│   ├── environments/                  # Archivos de configuración de entornos
+│   ├── styles/                        # Archivos de estilo globales
+│   ├── index.html                     # Plantilla HTML principal
+│   ├── main.ts                        # Punto de entrada principal
+│
+├── .editorconfig                      # Configuración del editor de código
+├── .gitignore                         # Archivos y directorios ignorados por Git
+├── angular.json                       # Configuración de Angular CLI
+├── package-lock.json                  # Descripción detallada de las dependencias del proyecto
+├── package.json                       # Descripción del proyecto y dependencias
+├── README.md                          # Documentación del proyecto
+├── tsconfig.json                      # Configuración de TypeScript
+```
+
+## 👨‍💻 Contribuciones
+
+¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor sigue los pasos descritos a continuación:
+
+1. Haz un fork del repositorio.
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-feature`).
+3. Realiza tus cambios y haz commits (`git commit -m 'Añadir nueva feature'`).
+4. Haz push a la rama (`git push origin feature/nueva-feature`).
+5. Abre un Pull Request.
+
+
+
+
 ```css
 src/
 ├── app/
@@ -63,8 +191,7 @@ src/
 
 
 ```
-
-Look at my files and project structure as it came configured with angular 18 the base project and the rest are the files that you have helped me to create based on this structure of folders and files there are solutions the errors and continue with the application for all other views
+```
 
 estructura bse de angular 18 +
 
@@ -112,4 +239,20 @@ SRC/APP/
        APP.ROUTES.TS
 
 
+```
 
+## 📝 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## 📞 Contacto
+
+Cualquier duda o consulta, puedes contactarme a través de:
+
+- **Correo**: tu_email@ejemplo.com
+- **LinkedIn**: [tu_perfil](https://linkedin.com/in/tu_perfil)
+
+
+
+¡Gracias por utilizar el sistema de gestión humana! 🌟
+```

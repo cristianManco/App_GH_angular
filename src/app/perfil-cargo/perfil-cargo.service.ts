@@ -1,34 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { PerfilCargo } from './perfil-cargo.model';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class PerfilCargoService {
-  private apiUrl = `${environment.apiUrl}/perfil-cargo/perfil`;
+export class CargoService {
+  private apiUrl = 'http://localhost:3002/api';
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<PerfilCargo[]> {
-    return this.http.get<PerfilCargo[]>(`${this.apiUrl}/all`);
+  getCargos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/campaign/all`).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getById(id: number): Observable<PerfilCargo> {
-    return this.http.get<PerfilCargo>(`${this.apiUrl}/${id}`);
+  createCargo(cargo: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/campaign/new`, cargo).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  create(perfilCargo: PerfilCargo): Observable<PerfilCargo> {
-    return this.http.post<PerfilCargo>(`${this.apiUrl}/new`, perfilCargo);
+  updateCargo(id: number, cargo: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/campaign/update/${id}`, cargo).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  update(id: number, perfilCargo: PerfilCargo): Observable<PerfilCargo> {
-    return this.http.put<PerfilCargo>(`${this.apiUrl}/update/${id}`, perfilCargo);
+  deleteCargo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/campaign/delete/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
+  private handleError(error: any) {
+    console.error('Error en la API', error);
+    return throwError(error);
   }
 }

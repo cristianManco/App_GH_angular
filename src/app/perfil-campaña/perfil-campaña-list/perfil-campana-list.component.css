@@ -1,0 +1,33 @@
+.modal {
+    display: none;
+  }
+  
+  .modal.show {
+    display: block;
+  }
+  
+  .modal-backdrop {
+    display: none;
+  }
+  
+  table th,
+  table td {
+    vertical-align: middle !important;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .modal-dialog {
+    max-width: 800px;
+  }
+  
+  .modal-title {
+    font-weight: bold;
+  }
+  
+  .modal-footer .btn {
+    margin-right: 10px;
+  }
+  
